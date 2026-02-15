@@ -24,10 +24,14 @@ The original JavaScript experimental logic and environment used to collect this 
 [QART1 Experiment 4 Source](https://github.com/catboxer/QART1/tree/main/experiments/exp4)
 
 ## Note on Nomenclature (Code vs. Manuscript)
-To maintain the integrity of the frozen data and the original analysis path, variable names in the code have not been altered to match the formal manuscript:
-* **demon:** In the Python/JS code, the **Paired Control Stream (PCS)** is referred to as the "demon" stream.
-* **subject:** Refers to the **Subject Stream**.
-* **hurstApprox:** This function calculates the **Single-scale Hurst exponent**.
+To maintain the integrity of the frozen data and the original analysis path, variable names in the code have not been altered to match the formal manuscript. Use this key to map the Source/Analysis code to the Paper:
+
+| Paper Term | Source/Analysis Variable | Description |
+| :--- | :--- | :--- |
+| **Paired Control Stream (PCS)** | `demon` | The simultaneous, unattended hardware control stream. |
+| **Subject Stream** | `subject` | The stream assigned to the observer via the quantum coin flip. |
+| **Single-scale Hurst exponent** | `hurstApprox` | The temporal structure metric computed for each 150-bit block. |
+| **Assignment Bit** | `bit 0` | The first bit of the 301-bit fetch used to assign labels. |
 
 ## AI Contribution Statement
 This project was developed with significant collaborative input from Large Language Models (LLMs), including **Claude (Anthropic)**, **ChatGPT (OpenAI)**, and **Gemini (Google)**. These models contributed heavily to the statistical framework, experimental design, architectural logic, and documentation.
