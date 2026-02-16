@@ -9,17 +9,21 @@ This repository contains the frozen datasets and analysis notebooks for the pape
 **"PAIRED QRNG CONTROL STREAMS REDUCE ARTIFACTUAL STRUCTURE IN MICRO-EFFECT EXPERIMENTS"**
 
 ## The Project
-Traditional micro-PK research has relied on "hit rates" (bit-frequency) to detect anomalies. This project provides the primary validation for a **Paired-Delta Architecture**—a design refined since late 2025—that uses simultaneous hardware controls to isolate observer-dependent effects from hardware drift, timing artifacts, and environmental noise.
+This project investigates the hypothesis that human intent doesn't "push" matter, but rather creates a structural coherence within the information substrate. Traditional research has focused on "hit rates" (the mean). This study shifts the focus to Temporal Structure, measured via the Single-scale Hurst exponent (HurstApprox), to identify "clumpiness" or persistence in quantum randomness.
 
-By analyzing the **temporal structure** (Single-scale Hurst exponent) rather than just the mean, we identify patterns in quantum randomness across three conditions: Human observers, AI agents (LLMs), and unattended hardware baselines.
+## The Paired-Delta Protocol (PDP)
+To solve the "hardware drift" problem that plagues this field, we utilize a dual-stream architecture:
 
-### Key Contributions
-* **The Architecture:** A rigorous validation of a simultaneous, quantum-labeled paired-control stream design.
-* **The Metric:** Shifting the focus from aggregate bit-counts (the Mean) to internal bit-ordering (Temporal Structure) using the Single-scale Hurst exponent.
-* **Comparative Observer Analysis:** Evaluation of temporal signatures produced by Human intent versus AI agents. 
-* **Observation on AI State:** Analysis reveals that the AI condition provides a unique data point where "intent" is temporally decoupled from the QRNG sampling phase due to the discrete state-management of the LLM interface, unlike the sustained concurrent attention in human sessions.
+* Subject Stream: The data assigned to the observer (Human or AI).
+* Paired Control Stream (PCS): A simultaneous hardware control (the "Demon" stream).
+* Differential Analysis: By subtracting the PCS from the Subject stream, we isolate effects that are specifically coupled to the observer, effectively "canceling out" environmental noise and hardware artifacts.
 
+## Experimental Groups
+We evaluate three distinct modalities of interaction with the information substrate:
 
+*  Human Observers: Represents biological intent with sustained, concurrent attention. The observer is actively engaged during the specific millisecond-window of the quantum entropy draw.
+* AI Agents (LLMs): Represents synthetic intent with temporally decoupled attention. Due to the discrete state-management of the LLM interface, the "intent" is processed prior to the fetch, testing whether intent requires concurrent presence to manifest structural coherence.
+* Baseline: Represents the absence of intent. These sessions are run by the system without an observer (human or synthetic) to establish the "ground truth" of the hardware's entropy substrate.
 
 ## Repository Contents
 This is a "Clean Room" reproduction repository, split into two primary workflows:
