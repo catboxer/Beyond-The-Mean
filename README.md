@@ -1,3 +1,8 @@
+## Archival Priority Snapshot
+
+This repository is a timestamped archival release created to establish research priority.
+The manuscript is currently in preparation. Minor errors, refinements, or wording changes may appear in later versions. The underlying datasets are frozen and will not change.
+
 # Beyond the Mean: Identifying Observer-Coupled Temporal Structure in Quantum Randomness
 
 This repository contains the frozen datasets and analysis notebooks for the paper:
