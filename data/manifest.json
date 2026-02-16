@@ -1,0 +1,22 @@
+{
+  "generated": "2026-02-15 14:20:49",
+  "frozen_date": "2026-02-10",
+  "hash_algorithm": "SHA-256",
+  "files": {
+    "participants": {
+      "filename": "Participants_List_2026-02-06_014111.csv",
+      "sha256": "899ff7ac53cf6f74b681641ca106706776d10d5bfea5a2f0158214c51f81e31d",
+      "size_bytes": 62141
+    },
+    "sessions": {
+      "filename": "Session_Summaries_JOINED_2026-02-06_014111.csv",
+      "sha256": "56466c946cba8bc329834ac7b37b8964de650ce1af91eea12f030d0fc883d7e1",
+      "size_bytes": 102184
+    },
+    "blocks": {
+      "filename": "Full_Nested_Minutes_2026-02-06_014111.csv",
+      "sha256": "d8a4ccdb80dd1be8315933dc3411281e183149bcd4b9c7700306eb7ddeca2ad6",
+      "size_bytes": 22413656
+    }
+  }
+}

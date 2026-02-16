@@ -1,0 +1,16 @@
+# Ignore everything
+*
+
+# But keep these folders (and their contents)
+!analysis/
+!analysis/**
+
+!data/
+!data/**
+
+# Keep the .gitignore file itself
+!.gitignore
+
+# (Optional) If you only want specific data types:
+# !data/**/*.csv
+# !data/**/*.json
