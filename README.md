@@ -1,6 +1,6 @@
 ## Archival Priority Snapshot
 
-This repository is a timestamped archival release created to establish research priority.
+This repository is a timestamped archival release created to establish research priority. 
 The manuscript is currently in preparation. Minor errors, refinements, or wording changes may appear in later versions. The underlying datasets are frozen and will not change.
 
 # Beyond the Mean: Identifying Observer-Coupled Temporal Structure in Quantum Randomness
@@ -9,14 +9,17 @@ This repository contains the frozen datasets and analysis notebooks for the pape
 **"PAIRED QRNG CONTROL STREAMS REDUCE ARTIFACTUAL STRUCTURE IN MICRO-EFFECT EXPERIMENTS"**
 
 ## The Project
-Traditional micro-PK research has relied on "hit rates" (bit-frequency) to detect anomalies. This project provides the primary validation for a **Paired-Delta Architecture** which is a design refined since late 2025 that uses simultaneous hardware controls to isolate observer-dependent effects from hardware drift, timing artifacts, and environmental noise.
+Traditional micro-PK research has relied on "hit rates" (bit-frequency) to detect anomalies. This project provides the primary validation for a **Paired-Delta Architecture**—a design refined since late 2025—that uses simultaneous hardware controls to isolate observer-dependent effects from hardware drift, timing artifacts, and environmental noise.
 
-By analyzing the **temporal structure** (Single-scale Hurst exponent) rather than just the mean, we identify patterns in quantum randomness that are specifically coupled to human observers.
+By analyzing the **temporal structure** (Single-scale Hurst exponent) rather than just the mean, we identify patterns in quantum randomness across three conditions: Human observers, AI agents (LLMs), and unattended hardware baselines.
 
 ### Key Contributions
 * **The Architecture:** A rigorous validation of a simultaneous, quantum-labeled paired-control stream design.
 * **The Metric:** Shifting the focus from aggregate bit-counts (the Mean) to internal bit-ordering (Temporal Structure) using the Single-scale Hurst exponent.
-* **The Control:** Utilizing an LLM agent as a "Temporally Decoupled Intent" control. Due to the discrete state-management of the AI interface, the agent’s intent is processed prior to the QRNG call, providing a control that lacks the sustained concurrent attention present in human sessions.
+* **Comparative Observer Analysis:** Evaluation of temporal signatures produced by Human intent versus AI agents. 
+* **Observation on AI State:** Analysis reveals that the AI condition provides a unique data point where "intent" is temporally decoupled from the QRNG sampling phase due to the discrete state-management of the LLM interface, unlike the sustained concurrent attention in human sessions.
+
+
 
 ## Repository Contents
 This is a "Clean Room" reproduction repository, split into two primary workflows:
@@ -49,7 +52,8 @@ To replicate the results:
 
 ## Data Availability
 All data is open-access. The complete dataset and analysis pipeline supporting this study are available in a permanent Zenodo archive:
-`[https://doi.org/10.5281/zenodo.18662941]`
+`https://doi.org/10.5281/zenodo.18662941`
+
 This archive represents a frozen snapshot of the repository at the time of release and ensures full reproducibility of the reported analyses. Any future updates will be issued as separately versioned records.
 
 ## License
