@@ -48,8 +48,9 @@ To replicate the results:
 3. Run the **Design Validation** notebook first to verify hardware health, followed by the **Analysis** notebook.
 
 ## Data Availability
-All data is open-access. A permanent archival record and DOI are available via Zenodo: 
-`[INSERT YOUR ZENODO DOI LINK HERE]`
+All data is open-access. The complete dataset and analysis pipeline supporting this study are available in a permanent Zenodo archive:
+`[https://doi.org/10.5281/zenodo.18662941]`
+This archive represents a frozen snapshot of the repository at the time of release and ensures full reproducibility of the reported analyses. Any future updates will be issued as separately versioned records.
 
 ## License
 This project is licensed under the **MIT License**.
