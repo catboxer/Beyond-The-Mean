@@ -17,12 +17,13 @@ from datetime import datetime
 # ─────────────────────────────────────────────────────────────
 # Configuration — list your data files here
 # ─────────────────────────────────────────────────────────────
-DATA_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data')
 
 DATA_FILES = {
-    'participants': 'Participants_List_2026-02-06_014111.csv',
-    'sessions':     'Session_Summaries_JOINED_2026-02-06_014111.csv',
-    'blocks':       'Full_Nested_Minutes_2026-02-06_014111.csv',
+    'participants': 'Frozen_Participants_2026-02-10_195735.csv',
+    'sessions':     'Frozen_Sessions_2026-02-10_195735.csv',
+    'blocks':       'Frozen_Blocks_2026-02-10_195735.csv',
+    'audits':       'Frozen_Audits_2026-02-10_195735.csv',
 }
 
 # ─────────────────────────────────────────────────────────────
