@@ -1,64 +1,107 @@
-## Archival Priority Snapshot
+# Beyond the Mean: A Paired-Control Architecture for QRNG Experiments
 
-This repository is a timestamped archival release created to establish research priority. 
-The manuscript is currently in preparation. Minor errors, refinements, or wording changes may appear in later versions. The underlying datasets are frozen and will not change.
+This repository contains the frozen datasets and analysis notebooks supporting the manuscript:
 
-# Beyond the Mean: Identifying Observer-Coupled Temporal Structure in Quantum Randomness
+**“Paired QRNG Control Streams Reduce Artifactual Structure in Observer–Randomness Experiments.”**
 
-This repository contains the frozen datasets and analysis notebooks for the paper:
-**"PAIRED QRNG CONTROL STREAMS REDUCE ARTIFACTUAL STRUCTURE IN MICRO-EFFECT EXPERIMENTS"**
+The repository provides a reproducible implementation of the Paired-Delta Protocol (PDP) and all analyses reported in the paper.
 
-## The Project
-This project investigates the hypothesis that human intent doesn't "push" matter, but rather creates a structural coherence within the information substrate. Traditional research has focused on "hit rates" (the mean). This study shifts the focus to Temporal Structure, measured via the Single-scale Hurst exponent (HurstApprox), to identify "clumpiness" or persistence in quantum randomness.
+---
+
+## Project Overview
+
+This project evaluates an experimental architecture designed to distinguish stream-specific effects from hardware- or environment-level variation in studies involving quantum random number generators (QRNGs).
+
+Traditional QRNG experiments often rely on single-stream analyses (e.g., hit rates). When expected deviations are small relative to system noise, it can be difficult to separate potential observer-linked patterns from drift or environmental artifacts.
+
+The Paired-Delta Protocol embeds a simultaneous control stream within each QRNG call, enabling within-call subtraction and common-mode rejection.
+
+Temporal ordering is assessed using a single-scale Hurst exponent computed at the block level.
+
+The primary contribution is methodological: an architecture in which deviations must survive hardware control, cross-condition comparison, and temporal diagnostics.
+
+---
 
 ## The Paired-Delta Protocol (PDP)
-To solve the "hardware drift" problem that plagues this field, we utilize a dual-stream architecture:
 
-* Subject Stream: The data assigned to the observer (Human or AI).
-* Paired Control Stream (PCS): A simultaneous hardware control (the "Demon" stream).
-* Differential Analysis: By subtracting the PCS from the Subject stream, we isolate effects that are specifically coupled to the observer, effectively "canceling out" environmental noise and hardware artifacts.
+Each QRNG call generates two simultaneous 150-bit streams derived from a single physical draw:
 
-## Experimental Groups
-We evaluate three distinct modalities of interaction with the information substrate:
+- **Subject Stream** – Assigned to the experimental condition  
+- **Paired Control Stream (PCS)** – Simultaneous unattended hardware control  
+- **Paired Difference (Δ)** – Stream-level metrics computed as Subject − PCS  
 
-*  Human Observers: Represents biological intent with sustained, concurrent attention. The observer is actively engaged during the specific millisecond-window of the quantum entropy draw.
-* AI Agents (LLMs): Represents synthetic intent with temporally decoupled attention. Due to the discrete state-management of the LLM interface, the "intent" is processed prior to the fetch, testing whether intent requires concurrent presence to manifest structural coherence.
-* Baseline: Represents the absence of intent. These sessions are run by the system without an observer (human or synthetic) to establish the "ground truth" of the hardware's entropy substrate.
+Because both streams originate from the same physical event, shared hardware or environmental fluctuations affect both equally and cancel under subtraction.
+
+---
+
+## Experimental Conditions
+
+The study evaluates three conditions:
+
+- **Human Participants** – Interactive sessions involving voluntary engagement  
+- **AI Agent Condition** – An LLM-driven interface interacting with the same experimental framework  
+- **Baseline Condition** – Fully automated execution without agent involvement  
+
+These conditions allow comparison of stream-level behavior across biological, artificial, and unattended execution contexts.
+
+---
 
 ## Repository Contents
-This is a "Clean Room" reproduction repository, split into two primary workflows:
-1. **Design Validation Notebook:** Documentation of the Paired-Delta apparatus, quantum label assignment, and 1000-bit hardware audit protocols.
-2. **Analysis of Findings Notebook:** The pipeline for Bayesian hierarchical modeling, Hurst exponent calculation, window-shuffle tests, and label-swap permutations.
-3. **data/:** Frozen CSV datasets with SHA-256 fingerprints to ensure results are fixed and verifiable.
 
-### Source Code
-The original JavaScript experimental logic and environment used to collect this data can be found in the primary project repository:
-[QART1 Experiment 4 Source](https://github.com/catboxer/QART1/tree/main/experiments/exp4)
+This repository contains:
 
-## Note on Nomenclature (Code vs. Manuscript)
-To maintain the integrity of the frozen data and the original analysis path, variable names in the code have not been altered to match the formal manuscript. Use this key to map the Source/Analysis code to the Paper:
+1. **Design Validation Notebook** – Documentation of QRNG labeling logic and hardware audit procedures  
+2. **Analysis Notebook** – Statistical analyses including paired-delta computation, Hurst exponent calculation, permutation tests, and hierarchical modeling  
+3. **data/** – Frozen CSV datasets with SHA-256 fingerprints for verification  
 
-| Paper Term | Source/Analysis Variable | Description |
-| :--- | :--- | :--- |
-| **Paired Control Stream (PCS)** | `demon` | The simultaneous, unattended hardware control stream. |
-| **Subject Stream** | `subject` | The stream assigned to the observer via the quantum coin flip. |
-| **Single-scale Hurst exponent** | `hurstApprox` | The temporal structure metric computed for each 150-bit block. |
-| **Assignment Bit** | `bit 0` | The first bit of the 301-bit fetch used to assign labels. |
+---
 
-## AI Contribution Statement
-This project was developed with significant collaborative input from Large Language Models (LLMs), including **Claude (Anthropic)**, **ChatGPT (OpenAI)**, and **Gemini (Google)**. These models contributed heavily to the statistical framework, experimental design, architectural logic, and documentation.
+## Source Code
+
+The JavaScript implementation used to collect the data is available here:
+
+https://github.com/catboxer/QART1/tree/main/experiments/exp4
+
+---
+
+## Nomenclature Mapping (Code vs Manuscript)
+
+| Manuscript Term | Code Variable | Description |
+|-----------------|--------------|-------------|
+| Paired Control Stream (PCS) | `demon` | Simultaneous hardware control stream |
+| Subject Stream | `subject` | Stream assigned to the experimental condition |
+| Single-scale Hurst exponent | `hurstApprox` | Block-level ordering metric |
+| Assignment Bit | `bit 0` | First bit used for stream labeling |
+
+---
+
+## AI Assistance Statement
+
+Large Language Models (LLMs), including systems developed by OpenAI, Anthropic, and Google, were used as research assistance tools during manuscript preparation and code refinement. These systems supported drafting, editing, statistical discussion, and documentation organization. All experimental design decisions, analyses, interpretations, and final manuscript content were reviewed and approved by the author.
+
+---
 
 ## Reproducibility
-To replicate the results:
-1. Clone this repository.
-2. Ensure you have `Python 3.x`, `Pandas`, `SciPy`, and `PyMC` installed.
-3. Run the **Design Validation** notebook first to verify hardware health, followed by the **Analysis** notebook.
+
+To reproduce the analyses:
+
+1. Clone the repository  
+2. Install Python 3.x with `pandas`, `scipy`, and `pymc`  
+3. Run the **Design Validation** notebook  
+4. Run the **Analysis** notebook  
+
+---
 
 ## Data Availability
-All data is open-access. The complete dataset and analysis pipeline supporting this study are available in a permanent Zenodo archive:
+
+All datasets and analysis code are publicly archived at:
+
 `https://doi.org/10.5281/zenodo.18662941`
 
-This archive represents a frozen snapshot of the repository at the time of release and ensures full reproducibility of the reported analyses. Any future updates will be issued as separately versioned records.
+This Zenodo record represents a frozen snapshot of the repository at the time of manuscript submission and ensures full reproducibility of the reported analyses.
+
+---
 
 ## License
+
 This project is licensed under the **MIT License**.
