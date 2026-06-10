@@ -112,7 +112,8 @@
   1. Clone the repository                                                            
   2. Install Python 3.x with `pandas`, `scipy`, and `pymc`                           
   3. Run the **Design Validation** notebook                                          
-  4. Run the **Analysis** notebook                                                   
+  4. Run the **Analysis** notebook
+  5. Data integrity can be verified using generate_manifest.py in the analysis folder, which recomputes SHA-256 hashes against the frozen CSV files.                                                 
                                                                                      
   ---                                                                                
                                                                                      
