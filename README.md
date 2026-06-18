@@ -85,9 +85,8 @@ Statistical analyses include:
 
 The following notebooks are retained for transparency and historical reference but are **not part of the primary analysis workflow supporting the current manuscript**:
 
-- `Exp4_Notebook_PairedDelta_NullValidation.ipynb`
-- `Exp4_Notebook_ArtifactInjection.ipynb`
-- `Exp4_Notebook_DualAnalysis.ipynb`
+- `Exp4_Notebook1_Paired_Control_Stream_Design_Validation.ipynb`
+- `Exp4_Notebook2_Temporal_Structure_Analysis.ipynb`
 
 Readers seeking to reproduce the manuscript should use the two Zen notebooks listed above.
 
