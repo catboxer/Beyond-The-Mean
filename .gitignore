@@ -8,8 +8,13 @@
 !data/
 !data/**
 
-# Keep the .gitignore file itself
+!paper/
+!paper/**
+
+# Keep top-level files
 !.gitignore
+!README.md
+!generate_manifest.py
 
 # (Optional) If you only want specific data types:
 # !data/**/*.csv
