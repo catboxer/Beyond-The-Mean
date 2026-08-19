@@ -94,15 +94,6 @@ Retrospective reconstruction comparing the original contiguous Subject/PCS split
 
 Secondary, dated comparison of Pilot-4 Baseline behavior against an in-progress Exp5-prescreen snapshot, kept separate to prevent two structurally different Baseline statistics from being conflated in the manuscript.
 
-### Legacy and Reference Notebooks
-
-The following notebooks are retained for transparency and historical reference but are **not part of the primary analysis workflow supporting the current manuscript**:
-
-- `Exp4_Notebook1_Paired_Control_Stream_Design_Validation.ipynb`
-- `Exp4_Notebook2_Temporal_Structure_Analysis.ipynb`
-
-Readers seeking to reproduce the manuscript should use the four notebooks listed above, guided by the Reader Guide.
-
 ### `generate_manifest.py`
 
 Recomputes SHA-256 fingerprints and summary statistics for the frozen CSVs in `data/`, producing `manifest.json`.
