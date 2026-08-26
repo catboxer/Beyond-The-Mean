@@ -40,3 +40,4 @@ All notable changes to this repository's paper, notebooks, and data documentatio
 ### Repository
 
 - `README.md` rewritten to match the revised manuscript title, framing, and section structure; adds the Exp5 preregistration link, the Ethics and Informed Consent statement, and documents all four analysis notebooks plus the Reader Guide.
+- Removed the superseded pre-Zen notebooks (`Exp4_Notebook1_Paired_Control_Stream_Design_Validation.ipynb`, `Exp4_Notebook2_Temporal_Structure_Analysis.ipynb`) and the README's "Legacy and Reference Notebooks" section, so readers can't mistake them for part of the current analysis workflow.
