@@ -185,3 +185,15 @@ The final report will include, for each dataset:
 - scatterplot of participant-level D_H versus A_W;
 - 5+ sensitivity analysis, if reported;
 - a clear statement that the analysis was prospectively specified after discovery of the component findings but before examination of their association.
+
+## 14. Addendum — 2026-09-01: Disposition
+
+**Status: not executed as specified above.** The participant-level D_H-versus-A_W Spearman correlation defined in Sections 3-9 was never run. No notebook, script, or output implementing that specific test exists in this repository, the source-code repository, or Drive, despite a search of all three. This plan was locked (Section 1) and a repository checkpoint was made the following day citing it (commit `88ca45b`, "before running the new analysis"), but the run itself does not appear to have happened, or its output was not preserved anywhere findable.
+
+**What exists instead** is a separate, much larger investigation of the underlying relational-narrowing quantity this plan's A_W was built from: `Variance_Narrowing_executed.ipynb` (source-code repository, `experiments/exp5-prescreen/notebooks/`), a 111-cell notebook covering both Exp4 and Exp5-prescreen, with a "Corrected Bottom Line (post-review, 2026-08-25)" — the same date as this plan. That notebook does not compute D_H or test its association with A_W; it instead asks whether the windowed Subject-PCS correlation-variance narrowing is itself a stable, real effect. Its answer, quoted directly:
+
+> "The finding is sensitive to window size, participant composition, provider composition, and data structure, and does not cleanly reproduce at one common W across datasets... this remains a candidate, configuration-sensitive relational observation, not an established general effect."
+
+More specifically: individual window widths (W=5/10/15/20) do not replicate cleanly across Exp4 and Exp5-prescreen or survive every correction tested. An **omnibus permutation test combining all four window widths at once** does clear conventional significance for Human(all) (p=0.0076) and Human5+ (p=0.0455), though not Human2-4 (p=0.0674). The single most notable single result: a stratum of participants with exactly one session (no possible practice/accumulation effect) still survives at W=10 and W=20. The notebook's own net verdict: the effect "has survived clustering, an omnibus participant-level permutation test, and every mundane mechanism tested except series length... enough to justify a preregistered confirmatory test. It is not enough to call the effect real."
+
+**This is disclosed here in place of the specified test**, not as a substitute result for it: it answers a related but distinct question (is the narrowing effect itself stable) rather than the one this plan specifies (does the narrowing effect covary with D_H across participants). The D_H-versus-A_W association remains untested. Per Section 12's own interpretation boundary, no claim is made here about what a result on that specific test would have shown.
