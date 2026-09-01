@@ -106,7 +106,7 @@ Secondary, dated comparison of Study 1 Baseline behavior against an in-progress 
 
 #### `generate_manifest.py`
 
-Recomputes SHA-256 fingerprints for the four original frozen CSVs in `data/` (`Frozen_Participants_*`, `Frozen_Sessions_*`, `Frozen_Blocks_*`, `Frozen_Audits_*`) and writes `data/manifest.json`. Run it as `python analysis/generate_manifest.py` (it locates `data/` relative to its own location, not the caller's working directory). **Known gap:** it does not yet hash `Frozen_Exp4_RawBlockBits_2026-07-26.pkl` or `PDP_Diagnostic_Validation_FROZEN.xlsx` — both are present in `data/` but are not covered by manifest-based integrity verification.
+Recomputes SHA-256 fingerprints for all six files in `data/` (the four original frozen CSVs, `Frozen_Exp4_RawBlockBits_2026-07-26.pkl`, and `PDP_Diagnostic_Validation_FROZEN.xlsx`) and writes `data/manifest.json`. Run it as `python analysis/generate_manifest.py` (it locates `data/` relative to its own location, not the caller's working directory). This is a standalone provenance record, not something the notebooks read back automatically — see Data Integrity Verification below.
 
 ---
 
@@ -122,9 +122,9 @@ Analyses locked *before* being run, kept separate from the ordinary exploratory 
 ### `data/`
 
 - `Frozen_Participants_2026-02-10_195735.csv`, `Frozen_Sessions_2026-02-10_195735.csv`, `Frozen_Blocks_2026-02-10_195735.csv`, `Frozen_Audits_2026-02-10_195735.csv` — the core frozen session/block/participant/audit tables, covered by `manifest.json`.
-- `Frozen_Exp4_RawBlockBits_2026-07-26.pkl` — raw pre-split 301-bit QRNG calls, keyed by session and block index, required by both Notebook 1 and Notebook 2's whole-call reconstruction. Not yet covered by `manifest.json` (see `generate_manifest.py` above).
-- `PDP_Diagnostic_Validation_FROZEN.xlsx` — the frozen development/held-out artifacts (blinded feature table and ground-truth key) used by `preregistration/PDP_Diagnostic_Validation_Prereg.ipynb`. Not yet covered by `manifest.json`.
-- `manifest.json` — SHA-256 hashes for the four core CSVs above, used for integrity verification by the Zen/Git notebook pairs.
+- `Frozen_Exp4_RawBlockBits_2026-07-26.pkl` — raw pre-split 301-bit QRNG calls, keyed by session and block index, required by both Notebook 1 and Notebook 2's whole-call reconstruction.
+- `PDP_Diagnostic_Validation_FROZEN.xlsx` — the frozen development/held-out artifacts (blinded feature table and ground-truth key) used by `preregistration/PDP_Diagnostic_Validation_Prereg.ipynb`.
+- `manifest.json` — SHA-256 hashes for all six files above; a standalone provenance record, not read automatically by the notebooks (see Data Integrity Verification below).
 
 ---
 
@@ -216,15 +216,9 @@ Open the notebooks and select **Run All Cells**. If you're running the Zen (loca
 
 ### Data Integrity Verification
 
-Notebooks 1 and 2 (both variants) verify the four core frozen CSVs against `manifest.json` using SHA-256 hashes and compare row counts and summary statistics against frozen values. This check does **not** currently cover `Frozen_Exp4_RawBlockBits_2026-07-26.pkl` or `PDP_Diagnostic_Validation_FROZEN.xlsx` (see the known gap noted under `generate_manifest.py` above).
+**Correction (2026-09-01):** an earlier version of this section claimed Notebooks 1 and 2 verify frozen inputs against `manifest.json` and report `✓ FULL VERIFICATION PASSED`. That isn't what the current code does — checked directly, neither notebook reads `manifest.json` or contains that string. What they actually do: on load, each notebook computes its own live SHA-256 hash of every frozen file it finds (via `locate_required_inputs()` and a printed `input_manifest` table) and displays it — a self-report for the reader to eyeball, not an automated pass/fail comparison against a stored reference.
 
-Successful verification reports:
-
-```text
-✓ FULL VERIFICATION PASSED
-```
-
-To regenerate `manifest.json` for the four covered CSVs, run:
+`data/manifest.json` (regenerated via `python analysis/generate_manifest.py`) is a standalone provenance record — the source for the paper's Data Provenance section — covering all six files in `data/`, not something the notebooks read back automatically. To verify a file hasn't changed, compare a notebook's printed hash for that file against the corresponding entry in `manifest.json` by hand.
 
 ```bash
 python analysis/generate_manifest.py
@@ -242,7 +236,7 @@ https://doi.org/10.5281/zenodo.18703829
 
 The Study 2 / Experiment 5 preregistration is on OSF (see above).
 
-The Git-variant notebooks are configured to download any missing frozen dataset files directly from this repository and perform integrity verification using SHA-256 hashes and manifest checks; the Zen-variant notebooks require the files to already be present locally.
+The Git-variant notebooks are configured to download any missing frozen dataset files directly from this repository, and both variants print a live SHA-256 hash of every frozen file they load; the Zen-variant notebooks require the files to already be present locally and perform no network access.
 
 ---
 

@@ -2,11 +2,15 @@
 # GENERATE DATA MANIFEST
 # ═══════════════════════════════════════════════════════════════════════════
 # PURPOSE: Create manifest.json with full SHA-256 hashes of all data files.
-#          Run this ONCE after freezing the dataset. The manifest is then
-#          used by Notebook 2 to verify file integrity before analysis.
+#          Run this ONCE after freezing the dataset. NOTE: as of 2026-09-01,
+#          neither notebook actually reads manifest.json back for comparison
+#          -- NB1/NB2 compute and print their own live hashes of whatever
+#          files they load, but do not check them against this file. This
+#          manifest is a standalone provenance record (and a source for the
+#          paper's Data Provenance section), not an automated integrity gate.
 #
 # USAGE:  python generate_manifest.py
-#         (run from the directory containing the CSV files)
+#         (run from anywhere -- paths are resolved relative to this file)
 # ═══════════════════════════════════════════════════════════════════════════
 
 import hashlib
@@ -24,6 +28,8 @@ DATA_FILES = {
     'sessions':     'Frozen_Sessions_2026-02-10_195735.csv',
     'blocks':       'Frozen_Blocks_2026-02-10_195735.csv',
     'audits':       'Frozen_Audits_2026-02-10_195735.csv',
+    'raw_calls':    'Frozen_Exp4_RawBlockBits_2026-07-26.pkl',
+    'diagnostic_validation': 'PDP_Diagnostic_Validation_FROZEN.xlsx',
 }
 
 # ─────────────────────────────────────────────────────────────
