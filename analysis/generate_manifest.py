@@ -2,12 +2,12 @@
 # GENERATE DATA MANIFEST
 # ═══════════════════════════════════════════════════════════════════════════
 # PURPOSE: Create manifest.json with full SHA-256 hashes of all data files.
-#          Run this ONCE after freezing the dataset. NOTE: as of 2026-09-01,
-#          neither notebook actually reads manifest.json back for comparison
-#          -- NB1/NB2 compute and print their own live hashes of whatever
-#          files they load, but do not check them against this file. This
-#          manifest is a standalone provenance record (and a source for the
-#          paper's Data Provenance section), not an automated integrity gate.
+#          Run this ONCE after freezing the dataset. As of 2026-09-01, NB1 and
+#          NB2 (both Zen and Git variants) load this file and fail loudly if
+#          any of their five frozen inputs doesn't match a stored hash here --
+#          re-run this script and commit the updated manifest.json any time a
+#          frozen input file legitimately changes, or those notebooks will
+#          raise on load.
 #
 # USAGE:  python generate_manifest.py
 #         (run from anywhere -- paths are resolved relative to this file)
