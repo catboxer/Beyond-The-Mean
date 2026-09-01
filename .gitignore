@@ -11,6 +11,9 @@
 !paper/
 !paper/**
 
+!preregistration/
+!preregistration/**
+
 # Keep top-level files
 !.gitignore
 !README.md
