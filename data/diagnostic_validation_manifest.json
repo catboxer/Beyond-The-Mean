@@ -1,0 +1,11 @@
+{
+  "generated": "2026-09-01 12:56:36",
+  "hash_algorithm": "SHA-256",
+  "files": {
+    "diagnostic_validation": {
+      "filename": "PDP_Diagnostic_Validation_FROZEN.xlsx",
+      "sha256": "dd45d49510526464321d2a574e6a24531237fc15673a6adfe0c9eade7dbb5f2d",
+      "size_bytes": 743192
+    }
+  }
+}

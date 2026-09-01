@@ -23,13 +23,17 @@ from datetime import datetime
 # ─────────────────────────────────────────────────────────────
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data')
 
+# Deliberately excludes PDP_Diagnostic_Validation_FROZEN.xlsx -- that file gets
+# its own separate manifest (see generate_diagnostic_validation_manifest.py) so
+# that regenerating one manifest never touches hashes for the other, and so
+# this citation-grade pilot dataset stays untouched by an unrelated validation
+# run's own data.
 DATA_FILES = {
     'participants': 'Frozen_Participants_2026-02-10_195735.csv',
     'sessions':     'Frozen_Sessions_2026-02-10_195735.csv',
     'blocks':       'Frozen_Blocks_2026-02-10_195735.csv',
     'audits':       'Frozen_Audits_2026-02-10_195735.csv',
     'raw_calls':    'Frozen_Exp4_RawBlockBits_2026-07-26.pkl',
-    'diagnostic_validation': 'PDP_Diagnostic_Validation_FROZEN.xlsx',
 }
 
 # ─────────────────────────────────────────────────────────────

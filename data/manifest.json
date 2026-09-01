@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-01 12:35:59",
+  "generated": "2026-09-01 12:56:36",
   "frozen_date": "2026-02-10",
   "hash_algorithm": "SHA-256",
   "files": {
@@ -27,11 +27,6 @@
       "filename": "Frozen_Exp4_RawBlockBits_2026-07-26.pkl",
       "sha256": "6cf3248d3ef2ac34f3bf9d18faaba5aeb72fdd19b9c3d78c0b3ed81e868498f7",
       "size_bytes": 3959136
-    },
-    "diagnostic_validation": {
-      "filename": "PDP_Diagnostic_Validation_FROZEN.xlsx",
-      "sha256": "dd45d49510526464321d2a574e6a24531237fc15673a6adfe0c9eade7dbb5f2d",
-      "size_bytes": 743192
     }
   }
 }
