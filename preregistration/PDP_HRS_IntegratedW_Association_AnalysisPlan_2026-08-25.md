@@ -197,3 +197,74 @@ The final report will include, for each dataset:
 More specifically: individual window widths (W=5/10/15/20) do not replicate cleanly across Exp4 and Exp5-prescreen or survive every correction tested. An **omnibus permutation test combining all four window widths at once** does clear conventional significance for Human(all) (p=0.0076) and Human5+ (p=0.0455), though not Human2-4 (p=0.0674). The single most notable single result: a stratum of participants with exactly one session (no possible practice/accumulation effect) still survives at W=10 and W=20. The notebook's own net verdict: the effect "has survived clustering, an omnibus participant-level permutation test, and every mundane mechanism tested except series length... enough to justify a preregistered confirmatory test. It is not enough to call the effect real."
 
 **This is disclosed here in place of the specified test**, not as a substitute result for it: it answers a related but distinct question (is the narrowing effect itself stable) rather than the one this plan specifies (does the narrowing effect covary with D_H across participants). The D_H-versus-A_W association remains untested. Per Section 12's own interpretation boundary, no claim is made here about what a result on that specific test would have shown.
+
+**Addendum to Section 14 — 2026-09-06: Notebook 2b independence check.** A separate notebook, `Exp4_Notebook2b_Retroactive_Structure_Metrics.ipynb`, reports its own omnibus permutation trio on the same exp5-prescreen data (its "Step 8" / "CELL 15j"): p=0.0076 (Human(all)), p=0.0175 (its "Human2-4"), p=0.0455 (Human5+) — two of three numbers numerically identical to this section's citation above. Checked directly by reading both notebooks' actual stratification code side by side, not by inference:
+
+- The two notebooks build their exp5-prescreen strata through **independently written code** — each loads and merges its own copy of the frozen Blocks/Sessions CSVs from scratch. No shared function, no shared dataframe object.
+- **Human(all)** and **Human5+** are defined identically in both (`condition=='human'`; `session_count >= 5`) on the same underlying frozen data. Both notebooks therefore correctly and independently arrive at the same numbers. This overlap is real agreement between two correct, independent implementations — not evidence of a shared bug, and not a coincidence needing further explanation.
+- **Human2-4 does not match, and the reason is a confirmed, real bug — but only in notebook 2b, not in the Part 4 result cited above:**
+  ```
+  # Variance_Narrowing_executed.ipynb (Part 4) — correct:
+  human24_5 = human_all_5[(human_all_5['session_count'] >= 2) & (human_all_5['session_count'] < 5)]
+  # -> N=5 participants, p=0.0674 (not significant)
+
+  # Exp4_Notebook2b_Retroactive_Structure_Metrics.ipynb — missing the lower bound:
+  human24_x5 = human_all_x5[human_all_x5['session_count'] < 5]
+  # -> N=9 participants, p=0.0175 (significant)
+  ```
+  The arithmetic closes exactly: Part 4's own separately-computed single-session stratum has exactly 4 exp5-prescreen participants ("A3 Follow-Up 1" in that notebook). 5 (true Human2-4) + 4 (single-session, wrongly swept in by the missing `>= 2`) = 9, matching notebook 2b's count precisely. Notebook 2b's "Human2-4" is therefore actually a Human1-4 pool; its own interpretive text ("the 9 participants with 2-4 sessions... carries its own independent, exactly-significant signal") misdescribes which participants that N=9 contains.
+
+**Conclusion: the Part 4 numbers cited above in this section are independent of notebook 2b and not affected by this bug** — they stand as reported. Notebook 2b's own Human2-4 claim (p=0.0175) is confounded by the missing lower bound and should not be cited as "Human2-4 carries its own independent, exactly-significant signal" until rerun with the corrected filter; the current result describes a Human1-4 pool, not Human2-4. Whether a correctly-bounded Human2-4 (N=5) still supports notebook 2b's broader claim that "Human(all)'s signal is not just Human5+ diluted" is a separate, unresolved question — Part 4 already found the true Human2-4 (N=5) alone does not reach significance (p=0.0674), so that supporting claim needs re-examination, not just relabeling.
+
+## 15. Addendum — 2026-09-06: Results, Study 1 / Exp4
+
+**Status: executed.** The test specified in Sections 3-9 was implemented in `Exp4_HRS_IntegratedW_Association_Git.ipynb` (source-code repository, `experiments/exp5-prescreen/notebooks/`) and run in Colab. Resampling depth: `N_BOOT_DEFAULT = 20000`, giving 1,000 Baseline-calibration draws and 1,000 matched-pseudo-group repetitions per test — the plan's own Section 7 floor for an initial decision analysis. No result below lands near a conventional decision boundary, so per Section 7 none was escalated to the 5,000-repetition target. Only Experiment 4 is reported here; Experiment 5-prescreen has not yet been run through this notebook, so Section 10's cross-dataset Patterns A/B cannot be evaluated yet.
+
+**Eligible population:** Human(all) = 121 participants (4,737 blocks); Human5+ = 3 participants (840 blocks); Baseline = 3 participants (3,090 blocks). Per-participant session-count distribution was not captured as a separate output by this run (it exists in-notebook as `df4['session_count']` but was not printed or exported).
+
+**D_H, descriptive:** Human(all) mean = +0.00034, median = +0.00137 (N=121). Human5+ mean = +0.00644, median = +0.00803 (N=3) — consistent with the prior observation that this subgroup carries a larger paired H_RS effect than the full population.
+
+**A_W, descriptive:** Human(all) mean = 0.39414, median = 0.32350 (121/121 participants scored). Human5+ mean = 1.13746, median = 1.11330 (3/3 scored) — consistent with Human5+ showing more integrated narrowing than the full population.
+
+### Primary — Human(all), Section 8
+
+| | value |
+|---|---|
+| Spearman r_s (D_H, A_W) | **+0.0055** (N=121) |
+| Baseline-matched null | 1,000 reps, mean = +0.0992, SD = 0.0907 |
+| One-sided empirical p | **0.8510** |
+| Pearson r (secondary/descriptive, Section 5) | not computed by this run |
+| Scatterplot (D_H vs. A_W) | not generated by this run |
+
+**Pattern D** (Section 10): no clear association. The observed correlation is effectively zero and sits below the mean of its own null distribution.
+
+### Secondary — Human5+, Section 9
+
+| | value |
+|---|---|
+| Spearman r_s (D_H, A_W) | **−0.5000** (N=3) |
+| Baseline-matched null | 988/1,000 reps, mean = +0.0651, SD = 0.7028 |
+| One-sided empirical p | **0.8441** |
+
+Wrong-signed relative to the plan's positive-direction hypothesis (Section 4), and far from its own null's tail. Per Section 9, this does not redefine the primary (null) result above. At N=3, this is not powered to distinguish "no coupling" from "no detectable coupling" — the point estimate should not be over-read either direction.
+
+### Secondary — within-participant, session-level (added for the OSF registration, not in the original Section 3-9 scope)
+
+Eligible: 6/121 participants with ≥3 sessions carrying a defined `A_W_session` (39 sessions pooled).
+
+| | value |
+|---|---|
+| Spearman r_s (dD_H, dA_W), order-detrended | **+0.0627** |
+| Pearson r (secondary/descriptive) | **−0.0157** |
+| Within-participant permutation null | 1,000 reps, mean = +0.0015, SD = 0.2022 → one-sided p = **0.3980** |
+| Baseline-mechanical null | 1,000 reps, mean = +0.0764, SD = 0.1921 → one-sided p = **0.5450** |
+
+**Pattern D**: neither null is small. No clear within-participant association — though per the plan's own power caveat, a null here cannot distinguish "no coupling" from "too little session-to-session variability in D_H_session/A_W_session to detect coupling if it exists," and N=6 participants is small.
+
+### Reading against the question that motivated this addendum
+
+All three sub-tests land on Pattern D. This is relevant to a specific alternative explanation raised for the Human5+ variance-narrowing ratios reported elsewhere (`Variance_Narrowing_executed.ipynb` Parts 13-15: Var[r] ratio ≈ 0.83 at W=5, ≈ 0.74 at W=10) — namely, that those ratios could be a mechanical byproduct of Human5+ carrying unusually large D_H, rather than an independent narrowing phenomenon. If that mechanism were operating, D_H and A_W should covary positively within the group that carries both effects. Instead, within Human5+ the observed relationship is negative and indistinguishable from its own null (ρ=−0.50, p=0.844, N=3). This does not prove the two are unrelated — N=3 has essentially no power — but it gives no support to the mechanical-artifact explanation, and the point estimate runs the wrong direction for it.
+
+**No claim is made that the underlying variance-narrowing effect itself is real or artifactual** — that question is governed by `Variance_Narrowing_executed.ipynb`'s own "Corrected Bottom Line," quoted in Section 14 above, which remains unchanged by this addendum. This addendum only reports whether D_H and A_W covary; per Section 12, it is a follow-up to exploratory findings, not an independent replication, since both candidate variables were identified by exploring these same datasets.
+
+**Known gaps in this run, relative to Section 13's reporting checklist:** no Pearson r or scatterplot was produced for the two between-participant tests (primary and Human5+); the per-participant session-count distribution was not exported. None of these affect the p-values above; they would need a follow-up pass through the notebook to fill in before this addendum could be considered a complete Section 13 report.

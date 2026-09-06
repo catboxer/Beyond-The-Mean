@@ -1,0 +1,12 @@
+{
+  "generated": "2026-09-06 10:27:50",
+  "source": "PROVIDER_VALIDATION_PRESPEC.md Section 9 (qart-experiment repo, experiments/exp4/)",
+  "hash_algorithm": "SHA-256",
+  "files": {
+    "provider_validation_blocks": {
+      "filename": "Frozen_ProviderValidation_Blocks_2026-09-06.csv",
+      "sha256": "4923bae8217e8fc0c8f266910aca7ee0a860cf856f5a5ce52c4235cc745efcf5",
+      "size_bytes": 3041377
+    }
+  }
+}
