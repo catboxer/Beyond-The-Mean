@@ -23,3 +23,13 @@
 # (Optional) If you only want specific data types:
 # !data/**/*.csv
 # !data/**/*.json
+
+# Study 1b (analysis/, data/, paper/ inside it are un-ignored by the rules above)
+!Study 1b/
+!Study 1b/analysis/**
+!Study 1b/data/**
+!Study 1b/paper/**
+
+# never commit macOS folder metadata
+.DS_Store
+**/.DS_Store
